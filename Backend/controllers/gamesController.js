@@ -1,12 +1,12 @@
 //CREATE/POST
-(req, res) => {
+const create = (req, res) => {
     res.status(201).json({
     id: "777sss777ss8s88",
     })
 }
 
 //READ/GET
-(req, res) => {
+const read = (req, res) => {
     res.status(200).json({
         player: {
             id: "5454564236544651",
@@ -21,6 +21,8 @@
 }
 
 //UPDATE/PATCH
-(req, res) => {
+const update = (req, res) => {
     res.status(204).send()
 }
+
+module.exports = {create, read, update};

@@ -4,8 +4,8 @@ const gamesController = require ('../controllers/gamesController.js');
 
 const router = express.Router();
 
-router.post('/games', gamesController /*.Function*/);
-router.get('/games/:id', gamesController /*.Function*/);
-router.patch('/games/:id', gamesController /*.Function*/);
+router.post('/', gamesController.create);
+router.get('/:id', gamesController.read);
+router.patch('/:id', gamesController.update);
 
-module.exports = (playerRouter);
+module.exports = router;

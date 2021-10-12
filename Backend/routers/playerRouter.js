@@ -4,7 +4,7 @@ const playerController = require ('../controllers/playerController.js');
 
 const router = express.Router();
 
-router.post('/players', playerController /*.Function*/);
-router.get('/players/:id', playerController /*.Function*/);
+router.post('/', playerController.create);
+router.get('/:id', playerController.read);
 
-module.exports = (playerRouter);
+module.exports = router;
