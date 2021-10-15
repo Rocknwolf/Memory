@@ -1,11 +1,13 @@
-import React from 'react'
+import {useContext} from 'react'
 import {Link} from 'react-router-dom'
+import {GameContext} from '../../Context/GameContext.jsx'
 
 function Lose() {
+    const {username} = useContext(GameContext);
     return (
         <div>
             <h2>Loser!</h2>
-            <p>username: you lose!</p>
+            <p>{username} you lose!</p>
             <br />
             <img src="http://blog.docx.org/wp-content/uploads/2010/03/nelson_haha.jpg" alt="haha" />
             <br />
