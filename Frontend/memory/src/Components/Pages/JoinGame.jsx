@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import PlayerSettings from '../PlayerSettings.jsx'
+import GameOptions from '../GameOptions.jsx'
 
 function JoinGame() {
     return (
@@ -9,6 +10,7 @@ function JoinGame() {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea nobis tempora nesciunt illo maxime. Veniam, illo tempore hic ea ad nulla pariatur quia tenetur, officia quas harum maxime deserunt! In.</p>
             <br />
             <PlayerSettings/>
+            <GameOptions/>
             <br />
             <Link to="/player-settings" >Accept Challenge</Link>
             <Link to="/" >No thanks!</Link>

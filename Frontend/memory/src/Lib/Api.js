@@ -16,7 +16,7 @@ export const getPlayer = (playerId) => {
 };
 
 export const createPlayer = ({name, avatar}) => {
-    return axios.post(`${HOST}/players/`)
+    return axios.post(`${HOST}/players/`, {name, avatar})
     .then((response) => response.data)
 };
 
@@ -31,7 +31,13 @@ export const joinGame = ({playerId, gameId}) => {
 };
 
 export const createGame = ({playerId, sizeX, sizeY}) => {
-    return axios.post(`${HOST}/games/`)
+    return axios.post(`${HOST}/games/`, {
+        playerId, 
+        size: {
+            x: sizeX, 
+            y: sizeY
+        }
+    })
     .then((response) => response.data)
 };
 
