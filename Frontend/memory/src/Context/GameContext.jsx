@@ -1,4 +1,6 @@
 import {createContext, useState} from 'react'
+import GameOptions from '../Components/GameOptions.jsx';
+
 export const GameContext = createContext(null);
 
 function GameProvider({children}) {
@@ -14,6 +16,7 @@ function GameProvider({children}) {
             username,
             won,
             toggleWinner,
+            GameOptions,
         }}>
         <h2>icke datt context</h2>
           {children}  

@@ -29,7 +29,7 @@ function GameSettings() {
             <label htmlFor="xSize">Länge X auswählen:</label>
             <input type="number" name="xSize" id="xSize" value={sizeX} onChange={handleXLength} />
             <label htmlFor="ySize">Länge Y auswählen</label>
-            <input type="number" name="ySize" id="ySize" value={sizeY} onChange={handleYLength}/>
+            <input type="number" name="ySize" id="ySize" value={sizeY} onChange={handleYLength} />
 
             <Button handleClick={saveGame} title="save Game" />
         </div>
