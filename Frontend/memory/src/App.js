@@ -13,6 +13,7 @@ import PlayerSettings from './Components/PlayerSettings.jsx';
 import Footer from './Components/Footer.jsx';
 import GameOver from './Components/Pages/GameOver.jsx';
 import GameProvider from './Context/GameContext.jsx';
+import GameSettings from './Components/GameSettings.jsx';
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
             </Route>
             <Route path="/player-settings">
               <PlayerSettings />
+            </Route>
+            <Route path="/game-settings">
+              <GameSettings />
             </Route>
             <Route path="/game-over">
               <GameOver />
