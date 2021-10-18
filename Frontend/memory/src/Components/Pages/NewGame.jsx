@@ -1,10 +1,16 @@
-import React from 'react'
+import {useContext} from 'react'
 import PlayerSettings from '../PlayerSettings.jsx';
 import GameSettings from '../GameSettings.jsx';
 import Button from '../Button.jsx';
+import { GameContext } from '../../Context/GameContext.jsx';
+import {createGame} from '../../Lib/Api.js';
 
 function NewGame() {
-    const handleClick = () =>{
+    const {size} = useContext(GameContext);
+    const playerId = 5555555;
+
+    const handleClick = () => {
+        createGame({playerId, size})
         alert("Hallo DU da")
     }
     return (

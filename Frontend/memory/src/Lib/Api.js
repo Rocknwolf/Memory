@@ -30,13 +30,10 @@ export const joinGame = ({playerId, gameId}) => {
     .then((response) => response.data)
 };
 
-export const createGame = ({playerId, sizeX, sizeY}) => {
+export const createGame = ({playerId, size}) => {
     return axios.post(`${HOST}/games/`, {
         playerId, 
-        size: {
-            x: sizeX, 
-            y: sizeY
-        }
+        size
     })
     .then((response) => response.data)
 };

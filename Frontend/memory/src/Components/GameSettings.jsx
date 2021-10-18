@@ -1,37 +1,23 @@
-import React, {useState} from 'react'
-import {createGame} from '../Lib/Api.js'
-import Button from './Button.jsx';
+import React, {useContext} from 'react'
+import { GameContext } from '../Context/GameContext.jsx';
 
-//Gamesettings
-
-const playerId = 555555;
 function GameSettings() {
-    const [sizeX, setSizeX] = useState(0);
-    const [sizeY, setSizeY] = useState(0);
+    const {size, setSize} = useContext(GameContext);
 
     const handleXLength = (event) => {
-        setSizeX(event.currentTarget.value)
+        setSize(prev => ({...prev, x: +event.target.value}));
     }
     const handleYLength = (event) => {
-        setSizeY(event.currentTarget.value)
-    }
-    const saveGame = () => {
-        createGame({playerId, 
-            size: {
-                x: sizeX, 
-                y: sizeY
-            }})
+        setSize(prev => ({...prev, y: +event.target.value}));
     }
 
     return (
         <div>
             <h2>Game settings</h2>
             <label htmlFor="xSize">Länge X auswählen:</label>
-            <input type="number" name="xSize" id="xSize" value={sizeX} onChange={handleXLength} />
+            <input type="text" name="xSize" id="xSize" value={size.x} onChange={handleXLength} />
             <label htmlFor="ySize">Länge Y auswählen</label>
-            <input type="number" name="ySize" id="ySize" value={sizeY} onChange={handleYLength} />
-
-            <Button handleClick={saveGame} title="save Game" />
+            <input type="text" name="ySize" id="ySize" value={size.y} onChange={handleYLength} />
         </div>
     )
 }

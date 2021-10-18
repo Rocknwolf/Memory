@@ -1,11 +1,11 @@
 import {createContext, useState} from 'react'
-import GameOptions from '../Components/GameOptions.jsx';
 
 export const GameContext = createContext(null);
 
 function GameProvider({children}) {
     const [username] = useState('Mickey');
     const [won, setWon] = useState(true);
+    const [size, setSize] = useState({x: 0, y: 0}); 
 
     const toggleWinner = () =>{
         setWon(!won);
@@ -16,7 +16,8 @@ function GameProvider({children}) {
             username,
             won,
             toggleWinner,
-            GameOptions,
+            size,
+            setSize,
         }}>
         <h2>icke datt context</h2>
           {children}  
