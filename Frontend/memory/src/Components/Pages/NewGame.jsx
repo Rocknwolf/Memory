@@ -3,15 +3,17 @@ import PlayerSettings from '../PlayerSettings.jsx';
 import GameSettings from '../GameSettings.jsx';
 import Button from '../Button.jsx';
 import { GameContext } from '../../Context/GameContext.jsx';
-import {createGame} from '../../Lib/Api.js';
+import {createGame, createPlayer} from '../../Lib/Api.js';
+import GameOptions from '../GameOptions.jsx';
 
 function NewGame() {
-    const {size} = useContext(GameContext);
+    const {size, name, avatar} = useContext(GameContext);
     const playerId = 5555555;
-
+    
     const handleClick = () => {
+        createPlayer({name, avatar})
         createGame({playerId, size})
-        alert("Hallo DU da")
+        console.log("Hallo DU da");
     }
     return (
         <div>
@@ -20,6 +22,9 @@ function NewGame() {
             <PlayerSettings/>
             <GameSettings/>
             <Button handleClick={handleClick} title="start game" />
+
+            <h2>Game Options:</h2>
+            <GameOptions/>
         </div>
     )
 }

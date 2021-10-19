@@ -14,6 +14,7 @@ import Footer from './Components/Footer.jsx';
 import GameOver from './Components/Pages/GameOver.jsx';
 import GameProvider from './Context/GameContext.jsx';
 import GameSettings from './Components/GameSettings.jsx';
+import GameOptions from './Components/GameOptions.jsx';
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
             </Route>
             <Route path="/game-over">
               <GameOver />
+            </Route>
+            <Route path="/game-options">
+              <GameOptions />
             </Route>
           </Switch>
           <Footer/>
