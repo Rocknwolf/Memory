@@ -19,7 +19,7 @@ function GameProvider({children}) {
     const [avatar, setAvatar] = useState(avatars[0]);
 
     const [won, setWon] = useState(true);
-    const [size, setSize] = useState({x: 0, y: 0}); 
+    const [size, setSize] = useState({x: 6, y: 4}); 
     const [playerId, setPlayerId] = useState(null);
     const [gameId, setGameId] = useState(null);
     const history = useHistory();
