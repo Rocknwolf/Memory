@@ -19,8 +19,8 @@ import GameOptions from './Components/GameOptions.jsx';
 function App() {
   return (
     <div className="App">
-      <GameProvider>
         <Router>
+          <GameProvider>
           <Switch>
             <Route exact path="/">
               <Home />
@@ -48,8 +48,8 @@ function App() {
             </Route>
           </Switch>
           <Footer/>
+          </GameProvider>
         </Router>
-      </GameProvider>
     </div>
   );
 }

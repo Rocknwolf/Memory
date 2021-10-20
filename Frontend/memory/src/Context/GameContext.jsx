@@ -1,5 +1,6 @@
 import {createContext, useState} from 'react'
-//Spieler anlegen und mit ein und dem selben Klick spiel erstellen
+import { createPlayer, createGame } from '../Lib/Api';
+import { useHistory } from 'react-router-dom';
 export const GameContext = createContext(null);
 
 function GameProvider({children}) {
@@ -19,6 +20,17 @@ function GameProvider({children}) {
 
     const [won, setWon] = useState(true);
     const [size, setSize] = useState({x: 0, y: 0}); 
+    const [playerId, setPlayerId] = useState(null);
+    const [gameId, setGameId] = useState(null);
+    const history = useHistory();
+
+    const startNewGame = async () => {
+        const newPlayer = await createPlayer({name, avatar});
+        setPlayerId(newPlayer.id);
+        const newGame = await createGame({playerId: newPlayer.id, size});
+        setGameId(newGame.id);
+        history.push(`/game/${newGame.id}`);
+    }
 
     const toggleWinner = () =>{
         setWon(!won);
@@ -33,7 +45,10 @@ function GameProvider({children}) {
             size,
             setSize,
             avatar,
-            setAvatar
+            setAvatar,
+            startNewGame,
+            playerId,
+            gameId,
         }}>
         <h2>icke datt context</h2>
           {children}  
