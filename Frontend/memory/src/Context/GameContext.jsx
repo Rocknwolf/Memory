@@ -22,6 +22,9 @@ function GameProvider({children}) {
     const [size, setSize] = useState({x: 6, y: 4}); 
     const [playerId, setPlayerId] = useState(null);
     const [gameId, setGameId] = useState(null);
+
+    const [hiddenCard, setHiddenCard]  = useState(true);
+
     const history = useHistory();
 
     const startNewGame = async () => {
@@ -30,6 +33,10 @@ function GameProvider({children}) {
         const newGame = await createGame({playerId: newPlayer.id, size});
         setGameId(newGame.id);
         history.push(`/game/${newGame.id}`);
+    }
+
+    const handleHiddenCard = () => {
+        setHiddenCard(false);
     }
 
     const toggleWinner = () =>{
@@ -49,6 +56,9 @@ function GameProvider({children}) {
             startNewGame,
             playerId,
             gameId,
+            handleHiddenCard,
+            hiddenCard,
+            setHiddenCard,
         }}>
         <h2>icke datt context</h2>
           {children}  

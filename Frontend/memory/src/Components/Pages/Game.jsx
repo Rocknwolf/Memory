@@ -1,13 +1,12 @@
-import React, {useContext} from 'react'
+import React , {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {GameContext} from '../../Context/GameContext.jsx'
+import CardComponent from '../CardComponent.jsx'
 
 function Game() {
-    const {size} = useContext(GameContext);
+    const {size, handleHiddenCard} = useContext(GameContext);
 
-    const testArr = Array(size.y).fill([...Array(size.x).fill("M")]);
-    console.log(testArr);
-    // const testArr = [...Array(size.x)].fill();
+    const testArr = Array(size.y).fill([...Array(size.x).fill(<CardComponent />)]);
 
     //Card-Component erstellen, die Componente soll klickbar sein. Umgedreht/nicht-umgedreht state.
 
@@ -20,7 +19,15 @@ function Game() {
             <p>turn: num</p>
             <p>score: num</p>
             <br />
-            <div> {testArr.map((row, rowIndex) => <div key={rowIndex} >{row.map((column, columnIndex) => <div key={columnIndex}>{column}</div>)}</div>)} </div>
+            <div> 
+                {testArr.map((row, rowIndex) => 
+                    <div key={rowIndex} onClick={()=>handleHiddenCard}>
+                        {row.map((column, columnIndex) => 
+                            <div key={columnIndex}> {column} </div>
+                        )}
+                    </div>
+                )} 
+            </div>
             <br />
             <p>user: 1</p>
             <p>user: 2</p>
