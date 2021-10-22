@@ -18,12 +18,11 @@ function GameProvider({children}) {
     const [name, setName] = useState('Mickey');
     const [avatar, setAvatar] = useState(avatars[0]);
 
-    const [won, setWon] = useState(true);
     const [size, setSize] = useState({x: 6, y: 4}); 
     const [playerId, setPlayerId] = useState(null);
     const [gameId, setGameId] = useState(null);
 
-    const [hiddenCard, setHiddenCard]  = useState(true);
+    const [drawnCards, setDrawnCards]  = useState([]);
 
     const history = useHistory();
 
@@ -35,20 +34,21 @@ function GameProvider({children}) {
         history.push(`/game/${newGame.id}`);
     }
 
-    const handleHiddenCard = () => {
-        setHiddenCard(false);
+    const handleDrawCard = (cardIndex) => {
+        if(drawnCards.length >= 2) return;
+        setDrawnCards([...drawnCards, cardIndex]);
+        if(drawnCards.length >= 1){
+            console.log([...drawnCards, cardIndex]);
+            setTimeout(_resetDrawnCards, 3000);
+        }
     }
 
-    const toggleWinner = () =>{
-        setWon(!won);
-}
+    const _resetDrawnCards = () => setDrawnCards([]);
 
     return (
         <GameContext.Provider value={{
             name,
             setName,
-            won,
-            toggleWinner,
             size,
             setSize,
             avatar,
@@ -56,9 +56,8 @@ function GameProvider({children}) {
             startNewGame,
             playerId,
             gameId,
-            handleHiddenCard,
-            hiddenCard,
-            setHiddenCard,
+            drawnCards,
+            handleDrawCard,
         }}>
         <h2>icke datt context</h2>
           {children}  

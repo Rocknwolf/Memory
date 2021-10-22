@@ -4,11 +4,11 @@ import {GameContext} from '../../Context/GameContext.jsx'
 import CardComponent from '../CardComponent.jsx'
 
 function Game() {
-    const {size, handleHiddenCard} = useContext(GameContext);
+    const {size, drawnCards} = useContext(GameContext);
 
-    const testArr = Array(size.y).fill([...Array(size.x).fill(<CardComponent />)]);
+    const testArr = Array(size.y).fill([...Array(size.x).fill()]);
 
-    //Card-Component erstellen, die Componente soll klickbar sein. Umgedreht/nicht-umgedreht state.
+    console.log({drawnCards});
 
     return (
         <div>
@@ -21,12 +21,13 @@ function Game() {
             <br />
             <div> 
                 {testArr.map((row, rowIndex) => 
-                    <div key={rowIndex} onClick={()=>handleHiddenCard}>
+                    <div key={rowIndex}>
                         {row.map((column, columnIndex) => 
-                            <div key={columnIndex}> {column} </div>
+                            <CardComponent index={rowIndex * size.x + columnIndex} key={columnIndex}/>
                         )}
                     </div>
                 )} 
+                
             </div>
             <br />
             <p>user: 1</p>
