@@ -26,7 +26,7 @@ function GameProvider({children}) {
 
     const [drawnCards, setDrawnCards]  = useState([]);
 
-    const [turns, setTurns] = useState(2); //----------------------------------
+    const [draw, setDraw] = useState(true);
 
     const history = useHistory();
 
@@ -39,24 +39,17 @@ function GameProvider({children}) {
     };
 
     const handleDrawCard = (cardIndex) => {
+        if(drawnCards.includes(cardIndex)) return;
         if(drawnCards.length >= 2) return;
         setDrawnCards([...drawnCards, cardIndex]);
         if(drawnCards.length >= 1){
             console.log([...drawnCards, cardIndex]);
-            switchTurns(); //--------------------------------------
             setTimeout(_resetDrawnCards, 3000);
-            console.log("du bist:", turns);
+            switchDraw();
         }
     };
-    const switchTurns = () => { //---------------------------------------
-        if(drawnCards.length === 1){
-            setTurns(0)
-        }
-        if(turns === 0){
-            setTimeout(_resetDrawnCards, 1000);
-            setPlayerId("nextPlayer");
-            console.log("next one");
-        }
+    const switchDraw = () => {
+        setDraw(!draw);
     };
 
     const _resetDrawnCards = () => setDrawnCards([]);
