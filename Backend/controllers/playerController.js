@@ -1,17 +1,29 @@
-
+const PlayerModel = require('../models/playerModel.js');
 //CREATE/POST
-const create = (req, res, next) => {
-    res.status(201).json({
-    id: "35465465465465"
-    })
+const create = async (req, res) => {
+    try {
+        const newPlayer = await PlayerModel.create({
+            name: req.body.name,
+            avatar: req.body.avatar,
+        });
+        res.status(201).json({ id: newPlayer._id });
+    } catch (error) {
+        if (error.name === "ValidationError") return res.status(400).send();
+        console.log(error);
+        return res.status(500).send();
+    }
 }
 
 //READ/GET
-const read = (req, res) => {
-    res.status(200).json({
-    name: "friodolin",
-    avatar: "www.google.de"
-    })
+const read = async (req, res) => {
+    try {
+        const player = await PlayerModel.read(req.params.id);
+        res.status(200).json({name: player.name, avatar: player.avatar});
+    } catch (error) {
+        if (error.name === "ValidationError") return res.status(400).send();
+        console.log(error);
+        return res.status(500).send();
+    }
 }
 
 module.exports = {create, read};
