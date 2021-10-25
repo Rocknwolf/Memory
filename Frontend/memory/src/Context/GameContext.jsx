@@ -3,6 +3,8 @@ import { createPlayer, createGame } from '../Lib/Api';
 import { useHistory } from 'react-router-dom';
 export const GameContext = createContext(null);
 
+// Gedanken machen, wie man Spielzug bestimmt. Implementieren: Karte nich anklickbar wenn du nich  dran bist, state im contex
+
 function GameProvider({children}) {
     const avatars = [
         "https://i.pravatar.cc/150?img=0", 
@@ -24,6 +26,8 @@ function GameProvider({children}) {
 
     const [drawnCards, setDrawnCards]  = useState([]);
 
+    const [turns, setTurns] = useState(2); //----------------------------------
+
     const history = useHistory();
 
     const startNewGame = async () => {
@@ -32,16 +36,28 @@ function GameProvider({children}) {
         const newGame = await createGame({playerId: newPlayer.id, size});
         setGameId(newGame.id);
         history.push(`/game/${newGame.id}`);
-    }
+    };
 
     const handleDrawCard = (cardIndex) => {
         if(drawnCards.length >= 2) return;
         setDrawnCards([...drawnCards, cardIndex]);
         if(drawnCards.length >= 1){
             console.log([...drawnCards, cardIndex]);
+            switchTurns(); //--------------------------------------
             setTimeout(_resetDrawnCards, 3000);
+            console.log("du bist:", turns);
         }
-    }
+    };
+    const switchTurns = () => { //---------------------------------------
+        if(drawnCards.length === 1){
+            setTurns(0)
+        }
+        if(turns === 0){
+            setTimeout(_resetDrawnCards, 1000);
+            setPlayerId("nextPlayer");
+            console.log("next one");
+        }
+    };
 
     const _resetDrawnCards = () => setDrawnCards([]);
 
