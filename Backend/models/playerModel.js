@@ -30,4 +30,5 @@ async function read (id) {
 module.exports = {
 	create,
     read,
+	Player,
 };
