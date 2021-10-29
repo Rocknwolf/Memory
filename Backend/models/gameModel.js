@@ -13,8 +13,14 @@ const SizeSchema = mongoose.Schema({
 
 const GameSchema = mongoose.Schema({
 	playerId: {
-		type: String,
+		type: mongoose.Schema.Types.ObjectId,
 		required: true,
+		ref: "Player",
+	},
+	opponentId: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: false,
+		ref: "Player",
 	},
 	size: SizeSchema
 }, { versionKey: false });
@@ -32,11 +38,10 @@ async function create ({ playerId, size }) {
 async function read (id) {
     return await Game.findById(id);
 }
-async function update (id, gameId) {
+async function update (id, opponentId) {
 	const game = await Game.findById(id);
 	if (!game) throw new Error("game_not_found");
-    id = player.id;
-	gameId = game.id;
+	game.opponentId = opponentId;
 	return await game.save();
 }
 

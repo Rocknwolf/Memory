@@ -8,8 +8,8 @@ const create = async (req, res) => {
         });
         res.status(201).json({ id: newPlayer._id });
     } catch (error) {
-        if (error.name === "ValidationError") return res.status(400).send();
         console.log(error);
+        if (error.name === "ValidationError") return res.status(400).send();
         return res.status(500).send();
     }
 }
@@ -20,8 +20,8 @@ const read = async (req, res) => {
         const player = await PlayerModel.read(req.params.id);
         res.status(200).json({name: player.name, avatar: player.avatar});
     } catch (error) {
-        if (error.name === "ValidationError") return res.status(400).send();
         console.log(error);
+        if (error.name === "ValidationError") return res.status(400).send();
         return res.status(500).send();
     }
 }

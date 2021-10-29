@@ -26,7 +26,7 @@ export const getGame = (gameId) => {
 };
 
 export const joinGame = ({playerId, gameId}) => {
-    return axios.patch(`${HOST}/games/${playerId}${gameId}`)
+    return axios.patch(`${HOST}/games/${gameId}`, {playerId})
     .then((response) => response.data)
 };
 

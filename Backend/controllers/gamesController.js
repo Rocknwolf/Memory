@@ -32,8 +32,15 @@ const read = async (req, res) => {
 }
 
 //UPDATE/PATCH
-const update = (req, res) => {
-    res.status(204).send()
+const update = async (req, res) => {
+    try {
+        const newGame = await GameModel.update(req.params.id, req.body.playerId);
+        res.status(204).send();
+    } catch (error) {
+        console.log(error);
+        if (error.name === "ValidationError") return res.status(400).send();
+        return res.status(500).send();
+    }
 }
 
 module.exports = {create, read, update};
