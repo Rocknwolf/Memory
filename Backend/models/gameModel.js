@@ -22,13 +22,21 @@ const GameSchema = mongoose.Schema({
 		required: false,
 		ref: "Player",
 	},
-	size: SizeSchema
+	size: SizeSchema,
+	cardState: {
+		type: Array,
+	}
 }, { versionKey: false });
 
 const Game = mongoose.model("Game", GameSchema);
 
 async function create ({ playerId, size }) {
+	const cardState = Array(size.x * size.y)
+		.fill("A")
+		.map((card, index) => Math.floor(index / 2));
+	
 	const game = new Game({
+		cardState,
 		playerId,
 		size,
 	});
