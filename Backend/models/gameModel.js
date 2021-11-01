@@ -36,7 +36,7 @@ async function create ({ playerId, size }) {
 	return await game.save();
 }
 async function read (id) {
-    return await Game.findById(id);
+    return await Game.findById(id).populate("playerId").populate("opponentId");
 }
 async function update (id, opponentId) {
 	const game = await Game.findById(id);

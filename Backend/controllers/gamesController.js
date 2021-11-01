@@ -22,8 +22,8 @@ const create = async (req, res) => {
 //READ/GET
 const read = async (req, res) => {
     try {
-        const newGame = await GameModel.read(req.params.id);
-        res.status(200).json(newGame._id);
+        const game = await GameModel.read(req.params.id);
+        res.status(200).json(game);
     } catch (error) {
         console.log(error);
         if (error.name === "ValidationError") return res.status(400).send();
@@ -34,7 +34,7 @@ const read = async (req, res) => {
 //UPDATE/PATCH
 const update = async (req, res) => {
     try {
-        const newGame = await GameModel.update(req.params.id, req.body.playerId);
+        await GameModel.update(req.params.id, req.body.playerId);
         res.status(204).send();
     } catch (error) {
         console.log(error);
