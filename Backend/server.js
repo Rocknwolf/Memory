@@ -7,7 +7,7 @@ const express = require('express');
 const playerRouter = require('./routers/playerRouter');
 const gamesRouter = require('./routers/gamesRouter');
 const io = require('socket.io');
-const { on } = require('nodemon');
+const {getCardByIndex, updateTurnState} = require('./models/gameModel.js');
 
 const app = express();
 
@@ -26,9 +26,13 @@ const socket = io(server);
 socket.on('connection', (connection) => {
     connection.emit('hello', "world");
 
-    connection.on('draw', (cardIndex) => {
-        const image = "Ich bin ein Image";
-        connection.emit('reveal', {cardIndex: +cardIndex, image});
+    // end turn bedingungen und Pärchen oder nich?
+
+    connection.on('draw', async (cardIndex) => {
+        const card = await getCardByIndex(cardIndex);
+
+        await updateTurnState(cardIndex, card);
+        connection.emit('reveal', {cardIndex: +cardIndex, card: card});
         console.log(cardIndex);
         
         connection.emit('endTurn', {
