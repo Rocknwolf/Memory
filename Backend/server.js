@@ -26,23 +26,15 @@ const socket = io(server);
 socket.on('connection', (connection) => {
     connection.emit('hello', "world");
 
-    // end turn bedingungen und Pärchen oder nich?
-
-    connection.on('draw', async (cardIndex) => {
+    connection.on('draw', async (cardIndex, playerId) => {
         const card = await getCardByIndex(cardIndex);
+        console.log({playerId});
 
-        await updateTurnState(cardIndex, card);
+        const turnState = await updateTurnState({index:cardIndex, card:card, playerId:playerId});
         connection.emit('reveal', {cardIndex: +cardIndex, card: card});
         console.log(cardIndex);
         
-        connection.emit('endTurn', {
-            nextPlayer: "playerOne", 
-            score:{
-                playerIdOne: 1, 
-                playerIdTwo: 2,
-            }, 
-            cardState: [1,2,3],
-        });
+        if(turnState) connection.emit('endTurn', turnState);
     })
 
     console.log("client connected");

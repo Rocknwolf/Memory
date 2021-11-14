@@ -29,11 +29,20 @@ const GameSchema = mongoose.Schema({
 	turnState: {
 		type: Array,
 	},
+	playerScore: {
+		type: Number,
+		default: 0,
+	},
+	opponentScore: {
+		type: Number,
+		default: 0,
+	},
 }, { versionKey: false });
 
 const Game = mongoose.model("Game", GameSchema);
 
 async function create ({ playerId, size }) {
+
 	const cardDeck = Array(size.x * size.y)
 		.fill("A")
 		.map((card, index) => Math.floor(index / 2));
@@ -51,36 +60,61 @@ async function create ({ playerId, size }) {
 
 	return await game.save();
 }
-async function updateTurnState(index, card){
-	const id = "618697f8d47ab1447d01a426";
+
+
+async function updateTurnState({index, card, playerId}){
+	let endTurn = false;
+	
+	const id = "618befeba2ae6aa628c012b6";
 	const turnState = {index: index, card: card};
 	const game = await Game.findById(id);
+	
 	if (!game) throw new Error("game_not_found");
-
+	
 	if(game.turnState.find((turn) => turn.index === index)) return;
 	game.turnState = [...game.turnState, turnState];
+
+	const isPlayerOne = playerId == game.playerId;
 	if(game.turnState.length >= 2) {
 		if(game.turnState[0].card === game.turnState[1].card){
-			console.log("yeah");
+			if(isPlayerOne){
+				game.playerScore++;
+			} else {
+				game.opponentScore++;
+			}
+		}else{
+			endTurn = true;
 		}
 		game.turnState = [];
 	};
-	console.log(game.turnState);
-	return await game.save();
+	await game.save()
+	const opponent = isPlayerOne ? game.opponentId : game.playerId;
+	return {
+		nextPlayer: endTurn ? opponent : playerId,
+		playerScore: game.playerScore,
+		opponentScore: game.opponentScore,
+	};
 }
+
+
 async function getCardByIndex(index){
-	const id = "618697f8d47ab1447d01a426";
+	const id = "618befeba2ae6aa628c012b6";
 	return (await Game.findById(id)).cardState[index];
 } 
+
+
 async function read (id) {
     return await Game.findById(id).populate("playerId").populate("opponentId");
 }
+
+
 async function update (id, opponentId) {
 	const game = await Game.findById(id);
 	if (!game) throw new Error("game_not_found");
 	game.opponentId = opponentId;
 	return await game.save();
 }
+
 
 module.exports = {
 	create,
