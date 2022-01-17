@@ -68,7 +68,7 @@ function GameProvider({children}) {
             drawnCards,
             handleDrawCard,
         }}>
-        <h2>icke datt context</h2>
+        {/* <h2>icke datt context</h2> */}
           {children}  
         </GameContext.Provider>
     )
