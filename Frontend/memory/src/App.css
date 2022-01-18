@@ -25,6 +25,9 @@
   background-color: rgba(51, 48, 48, 0.445);
   border: 1px solid white;
 }
+.homeHeader{
+  font-size: 3rem;
+}
 .homeHeader,.homeContent p{
   background-color: transparent;
 }
@@ -50,7 +53,84 @@
   color: white;
   font-weight: bold;
 }
+
+/* Footer */
 .copyright{
   text-align: end;
   padding: 0 3rem 3rem 0;
 }
+
+/* New Game */
+.newGameComponent{
+  display: flex;
+  /* height: 1vh; */
+  width: 70vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5% 15%;
+}
+
+/* Player Settings */
+.playerSettings{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.playerInput{
+  margin-top: 0.2rem;
+  text-align: center;
+  width: 20rem;
+  height: 3rem;
+  border: 2px solid gold;
+  border-radius: 3rem;
+  font-size: 1.5rem;
+}
+.playerInput:hover{
+  color: white;
+  width: 20.5rem;
+  height: 3.5rem;
+  border: 2px solid white;
+  background-color: rgba(255, 217, 0, 0.103);
+}
+.avatar{
+  width: 11rem;
+  border: 1px solid gold;
+  border-radius: 50%;
+  margin: 0 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0.01rem 0.01rem 6rem 0.01rem;
+}
+.avatar:hover{
+  width: 20rem;
+  box-shadow: 0.01rem 0.01rem 60rem 0.01rem;
+}
+.avatarBox{
+  display: flex;
+  margin: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 30%;
+  padding: 3rem;
+  border-radius: 2rem;
+  border: 1px solid gold;
+  background-color: rgba(228, 226, 220, 0.116);
+  box-shadow: 0.01rem 0.01rem 0.7rem 0.01rem;
+}
+.avatarList{
+  border: 1px solid gold;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  margin: 0.2rem;
+  box-shadow: white 0.01rem 0.01rem 0.7rem 0.01rem;
+}
+.avatarList:hover{
+  box-shadow: gold 0.01rem 0.01rem 0.7rem 0.01rem;
+  width: 6rem;
+  height: 6rem;
+}
+
+/* Game Settings */

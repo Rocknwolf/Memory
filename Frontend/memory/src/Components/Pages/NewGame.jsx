@@ -9,7 +9,7 @@ function NewGame() {
     const {startNewGame} = useContext(GameContext);
     
     return (
-        <div>
+        <div className='newGameComponent'>
             <h1>New Game</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas possimus similique aliquid atque odit nostrum distinctio soluta numquam ducimus a dolor quis ea id iure reiciendis corporis, quae consequuntur alias.</p>
             <PlayerSettings/>

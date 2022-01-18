@@ -26,14 +26,14 @@ function PlayerSettings() {
     // }
 
     return (
-        <div>
+        <div className='playerSettings'>
             <h2>Player settings</h2>
             <label htmlFor="name" >Name:</label>
-            <input type="text" name="name" id="name" value={name} onChange={handleChangeName} />
-
-            <img src={avatar} alt="avatar" />
-            {avatars.map((avatar, index) => <img src={avatar} alt="avatar" key={index} onClick={ () => handleSelectAvatar(avatar) } />)}
-
+            <input className='playerInput' type="text" name="name" id="name" value={name} onChange={handleChangeName} />
+            <div className="avatarBox">
+                <img className='avatar' src={avatar} alt="avatar" />
+                {avatars.map((avatar, index) => <img className='avatarList' src={avatar} alt="avatar" key={index} onClick={ () => handleSelectAvatar(avatar) } />)}
+            </div>
             {/* <Button handleClick={savePlayer} title="save Player" /> */}
         </div>
     )
