@@ -12,12 +12,14 @@ function GameSettings() {
     }
 
     return (
-        <div>
-            <h2>Game settings</h2>
-            <label htmlFor="xSize">Länge X auswählen:</label>
-            <input type="text" name="xSize" id="xSize" value={size.x} onChange={handleXLength} />
-            <label htmlFor="ySize">Länge Y auswählen</label>
-            <input type="text" name="ySize" id="ySize" value={size.y} onChange={handleYLength} />
+        <div className='gameSettingComponent'>
+            <div className="gameSettingsBox">
+                <h2>Game settings</h2>
+                <label htmlFor="xSize">Länge X auswählen:</label>
+                <input type="text" name="xSize" id="xSize" value={size.x} onChange={handleXLength} />
+                <label htmlFor="ySize">Länge Y auswählen</label>
+                <input type="text" name="ySize" id="ySize" value={size.y} onChange={handleYLength} />
+            </div>
         </div>
     )
 }

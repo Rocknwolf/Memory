@@ -16,7 +16,7 @@ function NewGame() {
             <GameSettings/>
             <Button handleClick={startNewGame} title="start game" />
 
-            <h2>Game Options:</h2>
+            <h2>Your Game Options:</h2>
             <GameOptions/>
         </div>
     )
