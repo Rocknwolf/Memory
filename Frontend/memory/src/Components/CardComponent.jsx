@@ -11,10 +11,9 @@ function CardComponent({index}) {
     }
     
     return (
-        <div>
-            <div> 
-                {/* <h4 onClick={handleHiddenCard}>Card</h4> */}                
-                <h4 onClick={drawCard}>{drawnCards.includes(index) ? index : "hidden"}</h4>
+        <div className='cardSection'>
+            <div>            
+                <h4 className='card' onClick={drawCard}>{drawnCards.includes(index) ? index : "hidden"}</h4>
             </div>
         </div>
     )

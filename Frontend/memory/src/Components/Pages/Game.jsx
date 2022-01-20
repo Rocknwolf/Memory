@@ -11,7 +11,7 @@ function Game() {
     console.log({drawnCards});
 
     return (
-        <div>
+        <div className='gameComponent'>
             <h1>Memory</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore recusandae asperiores error magni facere dolore. Neque veniam animi iusto at perspiciatis aut omnis, alias minima vitae. In iusto facere tempora?</p>
             <br />
@@ -30,8 +30,8 @@ function Game() {
                 
             </div>
             <br />
-            <p>user: 1</p>
-            <p>user: 2</p>
+                <p>user: 1</p>
+                <p>user: 2</p>
             <br />
             <Link to="/" >Home</Link>
 
